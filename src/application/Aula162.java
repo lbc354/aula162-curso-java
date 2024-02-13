@@ -3,7 +3,7 @@ package application;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -33,21 +33,30 @@ public class Aula162 {
 			
 			System.out.print("Common, imported or used? (c/i/u) ");
 			char ciu = sc.next().charAt(0);
+			while (ciu != 'c' && ciu != 'i' && ciu != 'u') {
+				System.out.print("Please enter a valid value: ");
+				ciu = sc.next().charAt(0);
+			}
 			
 			if (ciu == 'c') {
-				Product p = new Product(name, price);
-				products.add(p);
-			} else if (ciu == 'i') {
+//				Product p = new Product(name, price);
+//				products.add(p);
+				products.add(new Product(name, price));
+			}
+			if (ciu == 'i') {
 				System.out.print("Customs fee: ");
-				double fee = sc.nextDouble();
-				Product p = new ImportedProduct(name, price, fee);
-				products.add(p);
-			} else if (ciu == 'u') {
+//				double fee = sc.nextDouble();
+//				Product p = new ImportedProduct(name, price, fee);
+//				products.add(p);
+				products.add(new ImportedProduct(name, price, sc.nextDouble()));
+			} 
+			if (ciu == 'u') {
 				System.out.print("Manufacture date: (dd/mm/yyyy) ");
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-				Date md = sdf.parse(sc.next()); // * add throws declaration
-				Product p = new UsedProduct(name, price, md);
-				products.add(p);
+//				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//				Date md = sdf.parse(sc.next()); // * add throws declaration
+//				Product p = new UsedProduct(name, price, md);
+//				products.add(p);
+				products.add(new UsedProduct(name, price, new SimpleDateFormat("dd/MM/yyyy").parse(sc.next())));
 			}
 		}
 		
